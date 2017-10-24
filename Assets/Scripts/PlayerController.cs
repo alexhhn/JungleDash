@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-	public float speed;				//Floating point variable to store the player's movement speed.
+	public float speed;	//Floating point variable to store the player's movement speed.
+	public float jumpPower;
 
 	private Rigidbody2D rb2d;		//Store a reference to the Rigidbody2D component required to use 2D Physics.
 	private int count;				//Integer to store the number of pickups collected so far.
+
+	public Transform groundCheck;
+	public float groundCheckRadius;
+	public LayerMask whatIsground;
+	private bool onGround;
+
 
 	// Use this for initialization
 	void Start()
@@ -19,16 +26,12 @@ public class PlayerController : MonoBehaviour {
 	//FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
 	void FixedUpdate()
 	{
-		//Store the current horizontal input in the float moveHorizontal.
-		float moveHorizontal = Input.GetAxis ("Horizontal");
+		onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsground);
+		rb2d.velocity = new Vector2 (speed, rb2d.velocity.y);
 
-		//Store the current vertical input in the float moveVertical.
-		float moveVertical = Input.GetAxis ("Vertical");
-
-		//Use the two store floats to create a new Vector2 variable movement.
-		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
-
-		//Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-		rb2d.AddForce (movement * speed);
+		if (Input.GetKey(KeyCode.Space) && onGround) 
+		{
+			rb2d.velocity = new Vector2 (rb2d.velocity.x, jumpPower);
+		}
 	}
 }
