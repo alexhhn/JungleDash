@@ -12,6 +12,7 @@ public class RepeatingBackground : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		width = GetComponent<SpriteRenderer>().bounds.size.x;
+		print(width +"width");
 	}
 
 	// Update is called once per frame
@@ -23,6 +24,8 @@ public class RepeatingBackground : MonoBehaviour {
 	}
 
 	private void RePositionBackground () {
+		print("Repositioning bg");
+
 		Vector2 groundOffset = new Vector2(width * 2f,0);
 		transform.position = (Vector2)transform.position + groundOffset;
 	}

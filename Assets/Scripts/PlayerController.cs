@@ -26,12 +26,12 @@ public class PlayerController : MonoBehaviour {
 	//FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
 	void FixedUpdate()
 	{
-		onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsground);
+		// onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsground);
 		rb2d.velocity = new Vector2 (speed, rb2d.velocity.y);
 
-		if (Input.GetKey(KeyCode.Space) && onGround) 
-		{
-			rb2d.velocity = new Vector2 (rb2d.velocity.x, jumpPower);
-		}
+		// if (Input.GetKey(KeyCode.Space) && onGround)
+		// {
+		// 	rb2d.velocity = new Vector2 (rb2d.velocity.x, jumpPower);
+		// }
 	}
 }
