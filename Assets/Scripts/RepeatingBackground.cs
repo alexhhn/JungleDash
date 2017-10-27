@@ -3,30 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RepeatingBackground : MonoBehaviour {
+	public GameObject[] availableRooms;
+	public List<GameObject> currentRooms;
+	private float screenWidthInPoints;
 
-	private BoxCollider2D groundCollider;
-	private float groundHorizontalLength;
-	private float width;
-
-
-	// Use this for initialization
-	void Start () {
-		width = GetComponent<SpriteRenderer>().bounds.size.x;
-		print(width +"width");
+	void Start() {
+		float height = 2.0f * Camera.main.orthographicSize;
+		screenWidthInPoints = height * Camera.main.aspect;
 	}
 
-	// Update is called once per frame
-	void Update () {
-		if (transform.position.x < -width) {
-			RePositionBackground ();
-		}
+	void AddRoom(float farhtestRoomEndX)
+	{
+    // Pick a random index of the room to generate
+    int randomRoomIndex = Random.Range(0, availableRooms.Length);
 
+    //Creates a room object form the array of available rooms under the random index aboves
+    GameObject room = (GameObject)Instantiate(availableRooms[randomRoomIndex]);
+
+    //3
+    float roomWidth = room.transform.Find("Day").localScale.x;
+
+    // //4
+    // float roomCenter = farhtestRoomEndX + roomWidth * 0.5f;
+		//
+    // //5
+    // room.transform.position = new Vector3(roomCenter, 0, 0);
+		//
+    // //6
+    // currentRooms.Add(room);
 	}
 
-	private void RePositionBackground () {
-		print("Repositioning bg");
-
-		Vector2 groundOffset = new Vector2(width * 2f,0);
-		transform.position = (Vector2)transform.position + groundOffset;
-	}
 }
