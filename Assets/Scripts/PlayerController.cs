@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-	public float runSpeed;	//Floating point variable to store the player's movement speed.
 	public float jumpPower;
 
 	private Rigidbody2D rb2d;		//Store a reference to the Rigidbody2D component required to use 2D Physics.
@@ -29,7 +28,7 @@ public class PlayerController : MonoBehaviour {
 		// onGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsground);
 
 		// Player moves forward automatically
-		rb2d.velocity = new Vector2(runSpeed, rb2d.velocity.y);
+		rb2d.velocity = new Vector2(GameController.instance.runSpeed, rb2d.velocity.y);
 
 	 	// Player is jumping
 		bool isJumping = Input.GetKey(KeyCode.Space);

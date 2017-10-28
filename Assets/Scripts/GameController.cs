@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameController: MonoBehaviour{
 		public static GameController instance;
-		public Text scoreText;
-		public GameObject gameOverText;
+		// public Text scoreText;
+		// public GameObject gameOverText;
+		//
+		// private int score = 0;
+		// public bool gameOver = false;
+		public float runSpeed = 10f; 	//Floating point variable to store the player's movement speed.
 
-		private int score = 0;
-		public bool gameOver = false;
-		public float scrollSpeed = -1.5f;
 
 		void Awake() {
 			//If we don't currently have a game controll ...
@@ -22,6 +23,6 @@ public class GameController: MonoBehaviour{
 		}
 
 		public void PlayerDied() {
-			gameOver = true;
+			// gameOver = true;
 		}
 }
