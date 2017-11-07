@@ -27,8 +27,6 @@ public class PlayerController : MonoBehaviour {
 	//FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
 	void FixedUpdate()
 	{
-	//		onGround = true;
-
 		onGround = playerCollider.IsTouchingLayers(GetGround);
 
 		// Player moves forward automatically
@@ -39,11 +37,7 @@ public class PlayerController : MonoBehaviour {
 		if(isJumping && onGround) {
 			rb2d.velocity = new Vector2(0, jumpPower);
 		}
-
-		// if (Input.GetKey(KeyCode.Space) && onGround)
-		// {
-		// 	rb2d.velocity = new Vector2 (rb2d.velocity.x, jumpPower);
-		// }
+			
 		Flip();
 	}
 
