@@ -1309,6 +1309,10 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1263753236030096, guid: fe26fa840d26a49919e6213d45a19d14, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe26fa840d26a49919e6213d45a19d14, type: 2}
   m_IsPrefabParent: 0
@@ -1395,11 +1399,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 10
-  groundCheck: {fileID: 1946884788}
-  groundCheckRadius: 0.2
-  whatIsground:
+  GetGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
 --- !u!95 &987823159
 Animator:
   serializedVersion: 3
@@ -2034,9 +2036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 7.5
-  groundCheck: {fileID: 2100418297}
-  groundCheckRadius: 0
-  whatIsground:
+  GetGround:
     serializedVersion: 2
     m_Bits: 256
 --- !u!114 &1333333716
@@ -2994,11 +2994,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe26fa840d26a49919e6213d45a19d14, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &2100418297 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4948991056703778, guid: fe26fa840d26a49919e6213d45a19d14,
-    type: 2}
-  m_PrefabInternal: {fileID: 875086214}
 --- !u!1001 &2125764450
 Prefab:
   m_ObjectHideFlags: 0
