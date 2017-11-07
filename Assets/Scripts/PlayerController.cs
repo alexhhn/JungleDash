@@ -21,33 +21,46 @@ public class PlayerController : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D> ();
 		playerCollider = GetComponent<Collider2D> ();
 		yPosition = 0;
+		isFlipped = false;
+		onGround = false;
 
 	}
 
 	//FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
-	void FixedUpdate()
-	{
+	void Update()
+	{	
+
 		onGround = playerCollider.IsTouchingLayers(GetGround);
 
 		// Player moves forward automatically
 		rb2d.velocity = new Vector2(GameController.instance.runSpeed, rb2d.velocity.y);
 
+
 	 	// Player is jumping
 		bool isJumping = Input.GetKeyDown(KeyCode.Space);
-		if(isJumping && onGround) {
-			rb2d.velocity = new Vector2(0, jumpPower);
+		if (isJumping && onGround) {
+			if (isFlipped) {
+				rb2d.velocity = new Vector2 (0, jumpPower * -1);
+			} else {
+				rb2d.velocity = new Vector2 (0, jumpPower);
+			}
 		}
-			
-		Flip();
+		
+		if (onGround) {
+			Flip ();
+		}
+	
 	}
+
 
 	void Flip() {
 		if(Input.GetKeyDown(KeyCode.S)) {
 			transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1,transform.localScale.z);
 			if(isFlipped) {
-				yPosition = 0;
+				yPosition = 9.37f;
+				isFlipped = false;
 			}  else {
-				yPosition = 5.5f;
+				yPosition = 4.0f;
 				isFlipped = true;
 			}
 			transform.position = new Vector3(transform.position.x, yPosition,transform.position.z);
