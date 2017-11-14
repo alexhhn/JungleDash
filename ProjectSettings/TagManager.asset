@@ -14,8 +14,8 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
+  - ScenicBackground
+  - Floor
   - 
   - 
   - 
@@ -44,11 +44,26 @@ TagManager:
   - name: Background
     uniqueID: 3041326569
     locked: 0
+  - name: Clouds
+    uniqueID: 2102463725
+    locked: 0
+  - name: Mountains back
+    uniqueID: 131383251
+    locked: 0
+  - name: Mountains front
+    uniqueID: 2030802343
+    locked: 0
+  - name: Foreground Trees
+    uniqueID: 1748833151
+    locked: 0
   - name: Ground
     uniqueID: 1279671711
     locked: 0
   - name: Objects
     uniqueID: 660742751
+    locked: 0
+  - name: Monster
+    uniqueID: 2010613651
     locked: 0
   - name: Player
     uniqueID: 3598493403
