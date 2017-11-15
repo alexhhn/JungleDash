@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +8,10 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rb2d;		//Store a reference to the Rigidbody2D component required to use 2D Physics.
 	private int count;				//Integer to store the number of pickups collected so far.
 
-	public LayerMask GetGround;
-	// private bool onGround;
 	private Collider2D playerCollider;
 	private bool isFlipped;
 	private float yPosition;
+	private bool dead;
 
 	// jumping animation variables
 	public Transform groundCheckTransform;
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour {
 
 		UpdateGroundedStatus();
 
-		// onGround = playerCollider.IsTouchingLayers(GetGround);
 
 		// Player moves forward automatically
 		rb2d.velocity = new Vector2(GameController.instance.runSpeed, rb2d.velocity.y);
@@ -83,6 +81,35 @@ public class PlayerController : MonoBehaviour {
 	void UpdateGroundedStatus() {
 		grounded = Physics2D.OverlapCircle(groundCheckTransform.position, 0.1f, groundCheckLayerMask);
 		animator.SetBool("grounded", grounded);
+	}
+
+
+	// called when player collides with any objects
+	void OnTriggerEnter2D(Collider2D collider){
+		if(collider.gameObject.CompareTag("Minions")){
+
+			// trigger only if player is not flying
+			animator.SetTrigger("isAttacking");
+
+			KillMinion(collider);
+		}
+
+	}
+
+	// called when player exist collision with any objects
+	void OnTriggerExit2D(Collider2D collider){
+		if(collider.gameObject.CompareTag("Minions")){
+
+			Destroy(collider.gameObject);
+
+		}
+	}
+
+	void KillMinion(Collider2D minionCollider){
+		// Dont need to destroy, just play die animation
+		Animator minionAnimator = minionCollider.gameObject.GetComponent<Animator>();
+		minionAnimator.SetTrigger("isAttacked");
+
 	}
 
 }

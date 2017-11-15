@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4334718354160836}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4056778820476358}
   - component: {fileID: 212590889048546966}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 4948991056703778}
   - component: {fileID: 212206873227610842}
   - component: {fileID: 61451485172749232}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 'Ground '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 4766113831728200}
   - component: {fileID: 212937947075596376}
   - component: {fileID: 61886175741495954}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground Below
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 212943841914850112}
   - component: {fileID: 114633751240983412}
   - component: {fileID: 114808316466229588}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
