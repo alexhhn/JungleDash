@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour {
 	public float jumpPower;
@@ -18,6 +20,8 @@ public class PlayerController : MonoBehaviour {
 	Animator animator;
 	private bool grounded;
 	public LayerMask groundCheckLayerMask;
+	public Text scoreText;
+	public Text feedbackText;
 
 
 
@@ -109,7 +113,8 @@ public class PlayerController : MonoBehaviour {
 		// Dont need to destroy, just play die animation
 		Animator minionAnimator = minionCollider.gameObject.GetComponent<Animator>();
 		minionAnimator.SetTrigger("isAttacked");
-
+		scoreText.text = "haha";
+		feedbackText.text = "space to jump";
 	}
 
 }
