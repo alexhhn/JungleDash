@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 	public float jumpPower;
@@ -19,6 +20,9 @@ public class PlayerController : MonoBehaviour {
 	private bool grounded;
 	public LayerMask groundCheckLayerMask;
 
+	// UI variables
+	public GameObject feedbackPanel;
+	public Text feedbackText;
 
 
 	// Use this for initialization
@@ -29,9 +33,12 @@ public class PlayerController : MonoBehaviour {
 		playerCollider = GetComponent<Collider2D> ();
 		yPosition = 0;
 		isFlipped = false;
-		// onGround = false;
 		animator = GetComponent<Animator>();
 		grounded = true;
+
+		// disable the feedback panel when the game starts
+		feedbackPanel.SetActive (false);
+		feedbackPanel.GetComponent<Image> ().CrossFadeAlpha (0.1f, 0f, false);
 
 	}
 
@@ -100,7 +107,15 @@ public class PlayerController : MonoBehaviour {
 			print ("meet a danger");
 		}
 
+		if(collider.gameObject.CompareTag("jumpInst")) {
+			feedbackPanel.SetActive (true);
+			feedbackPanel.GetComponent<Image>().CrossFadeAlpha(1, 0.3f, true);
+			feedbackText.text = "Press Space to Jump";
+			StartCoroutine(Wait (2,feedbackPanel,feedbackText));
+		
+		}
 	}
+
 
 	// called when player exist collision with any objects
 	void OnTriggerExit2D(Collider2D collider){
@@ -114,6 +129,14 @@ public class PlayerController : MonoBehaviour {
 		// Dont need to destroy, just play die animation
 		Animator minionAnimator = minionCollider.gameObject.GetComponent<Animator>();
 		minionAnimator.SetTrigger("isAttacked");
+	}
+
+	IEnumerator Wait(float duration, GameObject gameObject, Text text)
+	{
+		//This is a coroutine
+		yield return new WaitForSeconds(duration);   //Wait
+		gameObject.GetComponent<Image>().CrossFadeAlpha(0, 0.5f, true);
+		text.CrossFadeAlpha (0, 0.5f, true);
 
 	}
 
