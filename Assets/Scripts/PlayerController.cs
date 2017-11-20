@@ -97,14 +97,15 @@ public class PlayerController : MonoBehaviour {
 		if(collider.gameObject.CompareTag("Minions")){
 			// trigger only if player is not flying
 
-//			animator.SetTrigger("isAttacking");
+			if (grounded) {
+				animator.SetTrigger ("isAttacking");
+			}
 			KillMinion(collider);
 		}
 
 		if(collider.gameObject.CompareTag("Danger")){
 			// trigger only if player is not flying
-			animator.SetBool("isDead", true);
-			print ("meet a danger");
+			animator.SetTrigger("isDead");
 		}
 
 		if(collider.gameObject.CompareTag("jumpInst")) {
