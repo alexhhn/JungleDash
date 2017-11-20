@@ -86,12 +86,18 @@ public class PlayerController : MonoBehaviour {
 
 	// called when player collides with any objects
 	void OnTriggerEnter2D(Collider2D collider){
+		
 		if(collider.gameObject.CompareTag("Minions")){
-
 			// trigger only if player is not flying
-//			animator.SetTrigger("isAttacking");
 
+//			animator.SetTrigger("isAttacking");
 			KillMinion(collider);
+		}
+
+		if(collider.gameObject.CompareTag("Danger")){
+			// trigger only if player is not flying
+			animator.SetBool("isDead", true);
+			print ("meet a danger");
 		}
 
 	}
@@ -100,7 +106,6 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D collider){
 		if(collider.gameObject.CompareTag("Minions")){
 			Destroy(collider.gameObject);
-
 
 		}
 	}
