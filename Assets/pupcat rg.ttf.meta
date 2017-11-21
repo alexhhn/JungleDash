@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 104036c1933fd4380846593d05dc2658
+timeCreated: 1511107118
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Pupcat
+  fontNames:
+  - Pupcat
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
