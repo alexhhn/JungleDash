@@ -54,7 +54,7 @@ public class RepeatingBackground : MonoBehaviour {
     foreach(var room in currentRooms)
     {
         
-				float roomWidth = room.transform.Find("Ground").localScale.x;
+		float roomWidth = room.transform.Find("Ground").localScale.x;
         float roomStartX = room.transform.position.x - (roomWidth * 0.5f) -1;
         float roomEndX = roomStartX + roomWidth;
 
@@ -74,7 +74,7 @@ public class RepeatingBackground : MonoBehaviour {
     foreach(var room in roomsToRemove)
     {
         currentRooms.Remove(room);
-        Destroy(room);
+//        Destroy(room);
     }
 
     //12
