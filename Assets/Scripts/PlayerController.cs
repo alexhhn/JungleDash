@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
 	private bool isFlipped;
 	private float yPosition;
 	private bool dead;
+	public int point;
+	public Text textPoint;
 
 	// jumping animation variables
 	public Transform groundCheckTransform;
@@ -40,6 +42,8 @@ public class PlayerController : MonoBehaviour {
 		feedbackPanel.SetActive (false);
 		feedbackPanel.GetComponent<Image> ().CrossFadeAlpha (0.1f, 0f, false);
 
+		point = 0;
+
 	}
 
 	//FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
@@ -66,6 +70,8 @@ public class PlayerController : MonoBehaviour {
 		if (grounded) {
 			Flip ();
 		}
+
+		textPoint.text = point.ToString();
 	}
 
 
@@ -93,20 +99,20 @@ public class PlayerController : MonoBehaviour {
 
 	// called when player collides with any objects
 	void OnTriggerEnter2D(Collider2D collider){
-		
+
 		if (collider.gameObject.CompareTag ("Minions")) {
 			// trigger only if player is not flying
 			if (grounded) {
 				animator.SetTrigger ("isAttacking");
 			}
 			KillMinion (collider);
-		} 
+		}
 
-		else if (collider.gameObject.CompareTag ("Danger")) 
-		
+		else if (collider.gameObject.CompareTag ("Danger"))
+
 		{
 			animator.SetTrigger ("isDead");
-		} 
+		}
 
 		else if (collider.gameObject.CompareTag ("jumpInst")) {
 			feedbackPanel.SetActive (true);
@@ -115,7 +121,7 @@ public class PlayerController : MonoBehaviour {
 			feedbackText.CrossFadeAlpha (1, 0.3f, true);
 
 			StartCoroutine (Wait (3, feedbackPanel, feedbackText));
-		} 
+		}
 
 		else if (collider.gameObject.CompareTag ("attackInst")) {
 			feedbackPanel.SetActive (true);
@@ -124,7 +130,7 @@ public class PlayerController : MonoBehaviour {
 			feedbackText.CrossFadeAlpha (1, 0.3f, true);
 
 			StartCoroutine (Wait (3, feedbackPanel, feedbackText));
-		} 
+		}
 
 		else if (collider.gameObject.CompareTag ("flipInst")) {
 			feedbackPanel.SetActive (true);
@@ -133,7 +139,7 @@ public class PlayerController : MonoBehaviour {
 			feedbackText.CrossFadeAlpha (1, 0.3f, true);
 
 			StartCoroutine (Wait (3, feedbackPanel, feedbackText));
-		} 
+		}
 
 		else {
 			print ("Collide smt");
@@ -154,6 +160,7 @@ public class PlayerController : MonoBehaviour {
 		// Dont need to destroy, just play die animation
 		Animator minionAnimator = minionCollider.gameObject.GetComponent<Animator>();
 		minionAnimator.SetTrigger("isAttacked");
+		point++;
 	}
 
 	IEnumerator Wait(float duration, GameObject gameObject, Text text)
