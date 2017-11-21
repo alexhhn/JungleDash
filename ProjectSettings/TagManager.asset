@@ -9,6 +9,7 @@ TagManager:
   - jumpInst
   - flipInst
   - attackInst
+  - Victory
   layers:
   - Default
   - TransparentFX
