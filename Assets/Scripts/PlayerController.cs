@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	void Flip() {
-		if(Input.GetKeyDown(KeyCode.S)) {
+		if(Input.GetKeyDown(KeyCode.F)) {
 			transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * -1,transform.localScale.z);
 			if(isFlipped) {
 				yPosition = 9.37f;
@@ -94,26 +94,50 @@ public class PlayerController : MonoBehaviour {
 	// called when player collides with any objects
 	void OnTriggerEnter2D(Collider2D collider){
 		
-		if(collider.gameObject.CompareTag("Minions")){
+		if (collider.gameObject.CompareTag ("Minions")) {
 			// trigger only if player is not flying
-
 			if (grounded) {
 				animator.SetTrigger ("isAttacking");
 			}
-			KillMinion(collider);
-		}
+			KillMinion (collider);
+		} 
 
-		if(collider.gameObject.CompareTag("Danger")){
-			// trigger only if player is not flying
-			animator.SetTrigger("isDead");
-		}
-
-		if(collider.gameObject.CompareTag("jumpInst")) {
-			feedbackPanel.SetActive (true);
-			feedbackPanel.GetComponent<Image>().CrossFadeAlpha(1, 0.3f, true);
-			feedbackText.text = "Press Space to Jump";
-			StartCoroutine(Wait (2,feedbackPanel,feedbackText));
+		else if (collider.gameObject.CompareTag ("Danger")) 
 		
+		{
+			animator.SetTrigger ("isDead");
+		} 
+
+		else if (collider.gameObject.CompareTag ("jumpInst")) {
+			feedbackPanel.SetActive (true);
+			feedbackPanel.GetComponent<Image> ().CrossFadeAlpha (1, 0.3f, true);
+			feedbackText.text = "Press Space to Jump";
+			feedbackText.CrossFadeAlpha (1, 0.3f, true);
+
+			StartCoroutine (Wait (3, feedbackPanel, feedbackText));
+		} 
+
+		else if (collider.gameObject.CompareTag ("attackInst")) {
+			feedbackPanel.SetActive (true);
+			feedbackPanel.GetComponent<Image> ().CrossFadeAlpha (1, 0.3f, true);
+			feedbackText.text = "Press A to Attack";
+			feedbackText.CrossFadeAlpha (1, 0.3f, true);
+
+			StartCoroutine (Wait (3, feedbackPanel, feedbackText));
+		} 
+
+		else if (collider.gameObject.CompareTag ("flipInst")) {
+			feedbackPanel.SetActive (true);
+			feedbackPanel.GetComponent<Image> ().CrossFadeAlpha (1, 0.3f, true);
+			feedbackText.text = "Press F to Flip";
+			feedbackText.CrossFadeAlpha (1, 0.3f, true);
+
+			StartCoroutine (Wait (3, feedbackPanel, feedbackText));
+		} 
+
+		else {
+			print ("Collide smt");
+
 		}
 	}
 
