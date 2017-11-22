@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rb2d;		//Store a reference to the Rigidbody2D component required to use 2D Physics.
 	private int count;				//Integer to store the number of pickups collected so far.
 
-	private Collider2D playerCollider;
 	private bool isFlipped;
 	private float yPosition;
 	private bool dead;
@@ -25,37 +24,38 @@ public class PlayerController : MonoBehaviour {
 	// UI variables
 	public GameObject feedbackPanel;
 	public Text feedbackText;
+	public GameObject gameOverBoard;
 
+	[SerializeField] private GameObject pausePanel;
 
 	// Use this for initialization
 	void Start()
 	{
 		//Get and store a reference to the Rigidbody2D component so that we can access it.
 		rb2d = GetComponent<Rigidbody2D> ();
-		playerCollider = GetComponent<Collider2D> ();
 		yPosition = 0;
 		isFlipped = false;
 		animator = GetComponent<Animator>();
 		grounded = true;
+		gameOverBoard.SetActive(false);
+
 
 		// disable the feedback panel when the game starts
 		feedbackPanel.SetActive (false);
 		feedbackPanel.GetComponent<Image> ().CrossFadeAlpha (0.1f, 0f, false);
 
 		point = 0;
+		pausePanel.SetActive(false);
 
 	}
 
 	//FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
 	void FixedUpdate()
 	{
-
 		UpdateGroundedStatus();
-
 
 		// Player moves forward automatically
 		rb2d.velocity = new Vector2(GameController.instance.runSpeed, rb2d.velocity.y);
-
 
 	 	// Player is jumping
 		bool isJumping = Input.GetKeyDown(KeyCode.Space);
@@ -72,7 +72,24 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		textPoint.text = point.ToString();
+
+		if(GameController.instance.gameOver == true) {
+			rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+			gameOverBoard.SetActive(true);
+
+			if(Input.GetKeyDown (KeyCode.Space)) {
+				// GameController.instance.gameOver = false;
+				// rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+				Application.LoadLevel(Application.loadedLevel);
+			}
+		} else {
+			gameOverBoard.SetActive(false);
+
+		}
 	}
+
+
+
 
 
 	void Flip() {
@@ -112,6 +129,7 @@ public class PlayerController : MonoBehaviour {
 
 		{
 			animator.SetTrigger ("isDead");
+			StartCoroutine(ShowGameOver(1));
 		}
 
 		else if (collider.gameObject.CompareTag ("jumpInst")) {
@@ -169,6 +187,14 @@ public class PlayerController : MonoBehaviour {
 		yield return new WaitForSeconds(duration);   //Wait
 		gameObject.GetComponent<Image>().CrossFadeAlpha(0, 0.5f, true);
 		text.CrossFadeAlpha (0, 0.5f, true);
+
+	}
+
+	IEnumerator ShowGameOver(float duration)
+	{
+		//This is a coroutine
+		yield return new WaitForSeconds(duration);   //Wait
+		GameController.instance.PlayerDied();
 
 	}
 
