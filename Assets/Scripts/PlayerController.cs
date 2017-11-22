@@ -5,9 +5,14 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 	public float jumpPower;
+	public AudioClip hitSound;
+	public AudioClip loseSound;
 
 	private Rigidbody2D rb2d;		//Store a reference to the Rigidbody2D component required to use 2D Physics.
 	private int count;				//Integer to store the number of pickups collected so far.
+	private AudioSource source;
+	private float volLowRange = .5f;
+		private float volHighRange = 1.0f;
 
 	private bool isFlipped;
 	private float yPosition;
@@ -39,7 +44,7 @@ public class PlayerController : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		grounded = true;
 		gameOverBoard.SetActive(false);
-
+		source = GetComponent<AudioSource> ();
 
 		// disable the feedback panel when the game starts
 		feedbackPanel.SetActive (false);
@@ -76,6 +81,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
+
+
+
 		// Player is jumping
 	bool isJumping = Input.GetKey(KeyCode.Space);
 	if (isJumping && grounded) {
@@ -101,7 +109,7 @@ public class PlayerController : MonoBehaviour {
 				gameOvetText.text = "Y o u  w i n !!";
 			} else {
 				gameOvetText.text = "Oh No ......";
-
+			
 			}
 
 			if(Input.GetKeyDown (KeyCode.Space)) {
@@ -181,6 +189,24 @@ public class PlayerController : MonoBehaviour {
 			feedbackText.CrossFadeAlpha (1, 0.3f, true);
 
 			StartCoroutine (Wait (3, feedbackPanel, feedbackText));
+		}	
+
+		else if (collider.gameObject.CompareTag ("halfInst")) {
+			feedbackPanel.SetActive (true);
+			feedbackPanel.GetComponent<Image> ().CrossFadeAlpha (1, 0.3f, true);
+			feedbackText.text = "You ' re halfway there";
+			feedbackText.CrossFadeAlpha (1, 0.3f, true);
+
+			StartCoroutine (Wait (5, feedbackPanel, feedbackText));
+		}
+
+		else if (collider.gameObject.CompareTag ("almostThere")) {
+			feedbackPanel.SetActive (true);
+			feedbackPanel.GetComponent<Image> ().CrossFadeAlpha (1, 0.3f, true);
+			feedbackText.text = "Almost there";
+			feedbackText.CrossFadeAlpha (1, 0.3f, true);
+
+			StartCoroutine (Wait (5, feedbackPanel, feedbackText));
 		}
 
 
@@ -210,6 +236,8 @@ public class PlayerController : MonoBehaviour {
 		// Dont need to destroy, just play die animation
 		Animator minionAnimator = minionCollider.gameObject.GetComponent<Animator>();
 		minionAnimator.SetTrigger("isAttacked");
+		float vol = Random.Range (volLowRange, volHighRange);
+		source.PlayOneShot(hitSound,vol);		
 		point++;
 	}
 

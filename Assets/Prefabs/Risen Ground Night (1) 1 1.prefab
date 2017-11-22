@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4757819935152764}
   - component: {fileID: 212662891919329318}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: t (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4048832008497098}
   - component: {fileID: 212816439743884558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: t (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 212833389438421764}
   - component: {fileID: 122889713678087366}
   - component: {fileID: 61395375435038976}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: platform-detail-08
   m_TagString: Danger
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4318193412943704}
   - component: {fileID: 61020534648148178}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Risen Ground Night (1) 1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4023298034345546}
   - component: {fileID: 212959851201276562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: platform-block-05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4319826076226086}
   - component: {fileID: 212420189625134626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: t
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4694718554158066}
   - component: {fileID: 212258212403833798}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: platform-block-06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382459084580328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -255.46999, y: -14.273542, z: 0.700753}
+  m_LocalPosition: {x: -255.49, y: -14.23, z: 0.700753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4023298034345546}

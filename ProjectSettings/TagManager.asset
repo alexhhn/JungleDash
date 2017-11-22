@@ -10,6 +10,8 @@ TagManager:
   - flipInst
   - attackInst
   - Victory
+  - halfInst
+  - almostThere
   layers:
   - Default
   - TransparentFX
