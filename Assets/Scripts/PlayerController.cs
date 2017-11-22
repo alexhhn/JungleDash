@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour {
 			if(GameController.instance.playerWon == true) {
 				gameOvetText.text = "Y o u  w i n !!";
 			} else {
-				gameOvetText.text = "N o ......";
+				gameOvetText.text = "Oh No ......";
 
 			}
 
@@ -168,10 +168,10 @@ public class PlayerController : MonoBehaviour {
 		else if (collider.gameObject.CompareTag ("attackInst")) {
 			feedbackPanel.SetActive (true);
 			feedbackPanel.GetComponent<Image> ().CrossFadeAlpha (1, 0.3f, true);
-			feedbackText.text = "Press A to Attack";
+			feedbackText.text = "Run into monsters to kill them and get points";
 			feedbackText.CrossFadeAlpha (1, 0.3f, true);
 
-			StartCoroutine (Wait (3, feedbackPanel, feedbackText));
+			StartCoroutine (Wait (6, feedbackPanel, feedbackText));
 		}
 
 		else if (collider.gameObject.CompareTag ("flipInst")) {
