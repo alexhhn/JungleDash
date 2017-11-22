@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour {
 	public Text feedbackText;
 	public GameObject gameOverBoard;
 	public Text gameOvetText;
+	public Text killedMonsterText;
 
-	[SerializeField] private GameObject pausePanel;
 
 	// Use this for initialization
 	void Start()
@@ -51,8 +51,6 @@ public class PlayerController : MonoBehaviour {
 		feedbackPanel.GetComponent<Image> ().CrossFadeAlpha (0.1f, 0f, false);
 
 		point = 0;
-		pausePanel.SetActive(false);
-
 	}
 
 	//FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
@@ -75,7 +73,7 @@ public class PlayerController : MonoBehaviour {
 
 
 		textPoint.text = point.ToString();
-
+		killedMonsterText.text = point.ToString();
 		GameOver();
 
 	}
@@ -102,6 +100,7 @@ public class PlayerController : MonoBehaviour {
 
 	void GameOver() {
 		if(GameController.instance.gameOver == true) {
+			killedMonsterText.text = point.ToString();
 			rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
 			gameOverBoard.SetActive(true);
 
@@ -109,7 +108,7 @@ public class PlayerController : MonoBehaviour {
 				gameOvetText.text = "Y o u  w i n !!";
 			} else {
 				gameOvetText.text = "Oh No ......";
-			
+
 			}
 
 			if(Input.GetKeyDown (KeyCode.Space)) {
@@ -189,7 +188,7 @@ public class PlayerController : MonoBehaviour {
 			feedbackText.CrossFadeAlpha (1, 0.3f, true);
 
 			StartCoroutine (Wait (3, feedbackPanel, feedbackText));
-		}	
+		}
 
 		else if (collider.gameObject.CompareTag ("halfInst")) {
 			feedbackPanel.SetActive (true);
@@ -237,7 +236,7 @@ public class PlayerController : MonoBehaviour {
 		Animator minionAnimator = minionCollider.gameObject.GetComponent<Animator>();
 		minionAnimator.SetTrigger("isAttacked");
 		float vol = Random.Range (volLowRange, volHighRange);
-		source.PlayOneShot(hitSound,vol);		
+		source.PlayOneShot(hitSound,vol);
 		point++;
 	}
 
