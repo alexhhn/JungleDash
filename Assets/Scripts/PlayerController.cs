@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject feedbackPanel;
 	public Text feedbackText;
 	public GameObject gameOverBoard;
+	public Text gameOvetText;
 
 	[SerializeField] private GameObject pausePanel;
 
@@ -57,27 +58,45 @@ public class PlayerController : MonoBehaviour {
 		// Player moves forward automatically
 		rb2d.velocity = new Vector2(GameController.instance.runSpeed, rb2d.velocity.y);
 
-	 	// Player is jumping
-		bool isJumping = Input.GetKeyDown(KeyCode.Space);
-		if (isJumping && grounded) {
-			if (isFlipped) {
-				rb2d.velocity = new Vector2 (0, jumpPower * -1);
-			} else {
-				rb2d.velocity = new Vector2 (0, jumpPower);
-			}
-		}
 
-		if (grounded) {
-			Flip ();
-		}
 
 		textPoint.text = point.ToString();
 
+		GameOver();
+
+	}
+
+	void Update() {
+		// Player is jumping
+	bool isJumping = Input.GetKey(KeyCode.Space);
+	if (isJumping && grounded) {
+		if (isFlipped) {
+			rb2d.velocity = new Vector2 (0, jumpPower * -1);
+		} else {
+			rb2d.velocity = new Vector2 (0, jumpPower);
+		}
+	}
+
+	if (!GameController.instance.gameOver) {
+		Flip ();
+	}
+	}
+
+
+	void GameOver() {
 		if(GameController.instance.gameOver == true) {
 			rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
 			gameOverBoard.SetActive(true);
 
+			if(GameController.instance.playerWon == true) {
+				gameOvetText.text = "Y o u  w i n !!";
+			} else {
+				gameOvetText.text = "N o ......";
+
+			}
+
 			if(Input.GetKeyDown (KeyCode.Space)) {
+				//FOR PAUSE
 				// GameController.instance.gameOver = false;
 				// rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
 				Application.LoadLevel(Application.loadedLevel);
@@ -87,10 +106,6 @@ public class PlayerController : MonoBehaviour {
 
 		}
 	}
-
-
-
-
 
 	void Flip() {
 		if(Input.GetKeyDown(KeyCode.F)) {
@@ -109,7 +124,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void UpdateGroundedStatus() {
-		grounded = Physics2D.OverlapCircle(groundCheckTransform.position, 0.1f, groundCheckLayerMask);
+		grounded = Physics2D.OverlapCircle(groundCheckTransform.position, 0.5f, groundCheckLayerMask);
 		animator.SetBool("grounded", grounded);
 	}
 
@@ -158,6 +173,14 @@ public class PlayerController : MonoBehaviour {
 
 			StartCoroutine (Wait (3, feedbackPanel, feedbackText));
 		}
+
+
+		else if (collider.gameObject.CompareTag ("Victory")) {
+			animator.SetBool ("hasWon", true);
+			GameController.instance.gameOver = true;
+			GameController.instance.playerWon = true;
+		}
+
 
 		else {
 			print ("Collide smt");

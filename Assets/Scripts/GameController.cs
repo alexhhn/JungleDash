@@ -11,6 +11,7 @@ public class GameController: MonoBehaviour{
 		//
 		private int score = 0;
 		public bool gameOver;
+		public bool playerWon;
 		public float runSpeed;	//Floating point variable to store the player's movement speed.
 
 
