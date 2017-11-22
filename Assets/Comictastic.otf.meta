@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d79f897467de24af08e2a2fa6a535100
+timeCreated: 1511357961
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Comictastic
+  fontNames:
+  - Comictastic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
