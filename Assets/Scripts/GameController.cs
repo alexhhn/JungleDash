@@ -9,9 +9,9 @@ public class GameController: MonoBehaviour{
 		// public Text scoreText;
 		// public GameObject gameOverText;
 		//
-		// private int score = 0;
-		// public bool gameOver = false;
-		public float runSpeed = 10f; 	//Floating point variable to store the player's movement speed.
+		private int score = 0;
+		public bool gameOver;
+		public float runSpeed;	//Floating point variable to store the player's movement speed.
 
 
 		void Awake() {
@@ -23,6 +23,6 @@ public class GameController: MonoBehaviour{
 		}
 
 		public void PlayerDied() {
-			// gameOver = true;
+			gameOver = true;
 		}
 }
