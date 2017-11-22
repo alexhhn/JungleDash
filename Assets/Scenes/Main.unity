@@ -5771,7 +5771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: 0
   playerWon: 0
-  runSpeed: 15
+  runSpeed: 6
 --- !u!1 &243995971
 GameObject:
   m_ObjectHideFlags: 0
@@ -7314,7 +7314,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 27, y: -175.1}
+  m_AnchoredPosition: {x: 13, y: -141}
   m_SizeDelta: {x: 791.4, y: 225.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &310517686
@@ -10385,6 +10385,16 @@ Prefab:
     - target: {fileID: 1640953790380770, guid: ca20d5bfc674144be8d2509002fcfd4f, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61431236452745970, guid: ca20d5bfc674144be8d2509002fcfd4f,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 61431236452745970, guid: ca20d5bfc674144be8d2509002fcfd4f,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: -0.69
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca20d5bfc674144be8d2509002fcfd4f, type: 2}

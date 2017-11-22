@@ -56,6 +56,15 @@ public class PlayerController : MonoBehaviour {
 		UpdateGroundedStatus();
 
 		// Player moves forward automatically
+		if(GameController.instance.runSpeed < 18) {
+			GameController.instance.runSpeed = GameController.instance.runSpeed * 1.001f;
+		}
+
+		else if(GameController.instance.runSpeed > 18 && GameController.instance.runSpeed < 25) {
+			GameController.instance.runSpeed = GameController.instance.runSpeed * 1.0001f;
+		}
+
+
 		rb2d.velocity = new Vector2(GameController.instance.runSpeed, rb2d.velocity.y);
 
 
